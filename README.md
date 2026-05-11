@@ -100,6 +100,9 @@ client/src/
 
 ## 💡 Como Usar
 
+### Usar Filtros Globais
+A barra de filtros no topo do dashboard permite filtrar dados em múltiplos gráficos simultaneamente. Clique em "Novo Filtro" para criar um filtro e escolha entre cinco tipos: **Texto** (busca por palavras-chave), **Seleção** (múltiplos valores), **Data** (data específica), **Intervalo de Datas** (entre duas datas) e **Número** (valor exato). Os gráficos e tabelas atualizam automaticamente quando você altera um filtro.
+
 ### Adicionar um Card
 1. Clique em um tipo de elemento na sidebar
 2. O card será adicionado ao dashboard
@@ -114,7 +117,8 @@ client/src/
 ### Gerenciar Dados
 1. Acesse a seção "Dados" na sidebar
 2. Faça upload de CSV/Excel ou use o editor JSON
-3. Os gráficos atualizam automaticamente
+3. Os gráficos atualizam automaticamente com os novos dados
+4. Filtros globais continuam sendo aplicados aos dados atualizados
 
 ### Exportar/Importar
 - **Exportar**: Clique no botão de download na topbar
@@ -126,14 +130,16 @@ client/src/
 
 ## 🎯 Funcionalidades Futuras
 
-- [ ] Integração com APIs externas
-- [ ] Colaboração em tempo real
-- [ ] Temas customizáveis
-- [ ] Mais tipos de gráficos (scatter, bubble, etc)
-- [ ] Filtros globais
-- [ ] Agendamento de atualizações
-- [ ] Exportar para PDF/PNG
-- [ ] Modo apresentação
+- [ ] Integração com APIs externas para dados em tempo real
+- [ ] Colaboração em tempo real com WebSockets
+- [ ] Temas customizáveis (além de dark/light)
+- [ ] Mais tipos de gráficos (scatter, bubble, heatmap, etc)
+- [ ] Filtros por coluna específica (atualmente afetam todas as colunas)
+- [ ] Persistência de configuração de filtros
+- [ ] Agendamento de atualizações automáticas
+- [ ] Exportar para PDF/PNG/SVG
+- [ ] Modo apresentação em tela cheia
+- [ ] Integração com Google Sheets e outras fontes de dados
 
 ## 🛠️ Desenvolvimento
 

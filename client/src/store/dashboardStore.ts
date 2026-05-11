@@ -4,7 +4,7 @@
  */
 
 import { create } from "zustand";
-import { Dashboard, DashboardCard, DataSource, CardType, CardConfig, Position, ChartType } from "@/types";
+import { Dashboard, DashboardCard, DataSource, CardType, CardConfig, Position, ChartType, GlobalFilter, FilteredData } from "@/types";
 import { nanoid } from "nanoid";
 
 interface DashboardStore {
@@ -13,6 +13,8 @@ interface DashboardStore {
   selectedCardId: string | null;
   isEditMode: boolean;
   theme: "dark" | "light";
+  globalFilters: GlobalFilter[];
+  filteredData: FilteredData;
 
   // Dashboard actions
   createDashboard: (name: string) => void;
@@ -37,6 +39,12 @@ interface DashboardStore {
   toggleEditMode: () => void;
   setEditMode: (isEditMode: boolean) => void;
 
+  // Filter actions
+  addGlobalFilter: (name: string, type: GlobalFilter["type"], options?: { label: string; value: string }[]) => void;
+  updateGlobalFilter: (filterId: string, value: any, appliedToCards?: string[]) => void;
+  deleteGlobalFilter: (filterId: string) => void;
+  applyFilters: () => void;
+
   // Persistence
   exportDashboard: () => string;
   importDashboard: (json: string) => boolean;
@@ -60,6 +68,8 @@ export const useDashboardStore = create<DashboardStore>((set, get) => ({
   selectedCardId: null,
   isEditMode: true,
   theme: "dark",
+  globalFilters: [],
+  filteredData: {},
 
   // Dashboard actions
   createDashboard: (name: string) => {
@@ -275,6 +285,82 @@ export const useDashboardStore = create<DashboardStore>((set, get) => ({
 
   setEditMode: (isEditMode: boolean) => {
     set({ isEditMode });
+  },
+
+  // Filter actions
+  addGlobalFilter: (name: string, type: GlobalFilter["type"], options?: { label: string; value: string }[]) => {
+    const newFilter: GlobalFilter = {
+      id: nanoid(),
+      name,
+      type,
+      value: null,
+      options,
+      appliedToCards: [],
+    };
+    set((state) => ({
+      globalFilters: [...state.globalFilters, newFilter],
+    }));
+    get().saveToDisk();
+  },
+
+  updateGlobalFilter: (filterId: string, value: any, appliedToCards?: string[]) => {
+    set((state) => ({
+      globalFilters: state.globalFilters.map((f) =>
+        f.id === filterId
+          ? { ...f, value, appliedToCards: appliedToCards || f.appliedToCards }
+          : f
+      ),
+    }));
+    get().applyFilters();
+    get().saveToDisk();
+  },
+
+  deleteGlobalFilter: (filterId: string) => {
+    set((state) => ({
+      globalFilters: state.globalFilters.filter((f) => f.id !== filterId),
+    }));
+    get().applyFilters();
+    get().saveToDisk();
+  },
+
+  applyFilters: () => {
+    const state = get();
+    if (!state.dashboard) return;
+
+    const filtered: FilteredData = {};
+
+    state.dashboard.dataSources.forEach((dataSource) => {
+      let filteredData = [...dataSource.data];
+
+      state.globalFilters.forEach((filter) => {
+        if (filter.value === null || filter.value === "") return;
+
+        filteredData = filteredData.filter((row) => {
+          if (filter.type === "text") {
+            return Object.values(row).some((val) =>
+              String(val).toLowerCase().includes(String(filter.value).toLowerCase())
+            );
+          } else if (filter.type === "select" && Array.isArray(filter.value)) {
+            return filter.value.some((v) => Object.values(row).includes(v));
+          } else if (filter.type === "number") {
+            return Object.values(row).some((val) => Number(val) === filter.value);
+          } else if (filter.type === "date") {
+            return Object.values(row).some((val) => String(val).includes(String(filter.value)));
+          } else if (filter.type === "daterange" && typeof filter.value === "object" && filter.value !== null && "start" in filter.value) {
+            const { start, end } = filter.value as { start: string; end: string };
+            return Object.values(row).some((val) => {
+              const valStr = String(val);
+              return valStr >= start && valStr <= end;
+            });
+          }
+          return true;
+        });
+      });
+
+      filtered[dataSource.id] = filteredData;
+    });
+
+    set({ filteredData: filtered });
   },
 
   // Persistence

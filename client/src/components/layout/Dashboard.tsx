@@ -7,8 +7,7 @@ import { useEffect } from "react";
 import { useDashboardStore } from "@/store/dashboardStore";
 import GridLayout from "react-grid-layout";
 import { DashboardCard } from "@/components/cards/DashboardCard";
-import "react-grid-layout/css/styles.css";
-import "react-resizable/css/styles.css";
+import { FilterBar } from "./FilterBar";
 
 export function Dashboard() {
   const { dashboard, updateCardPosition, isEditMode, loadFromDisk } = useDashboardStore();
@@ -48,8 +47,10 @@ export function Dashboard() {
   };
 
   return (
-    <div className="w-full h-full p-6 overflow-auto">
-      <GridLayout
+    <div className="w-full h-full flex flex-col">
+      <FilterBar />
+      <div className="flex-1 p-6 overflow-auto">
+        <GridLayout
         className="grid-layout"
         layout={layout}
         onLayoutChange={handleLayoutChange}
@@ -62,16 +63,17 @@ export function Dashboard() {
             <DashboardCard card={card} />
           </div>
         ))}
-      </GridLayout>
+        </GridLayout>
 
-      {dashboard.cards.length === 0 && (
-        <div className="flex items-center justify-center h-96 text-[#8a95b8]">
-          <div className="text-center">
-            <p className="text-lg font-semibold mb-2">Dashboard vazio</p>
-            <p className="text-sm">Use a sidebar para adicionar elementos</p>
+        {dashboard.cards.length === 0 && (
+          <div className="flex items-center justify-center h-96 text-[#8a95b8]">
+            <div className="text-center">
+              <p className="text-lg font-semibold mb-2">Dashboard vazio</p>
+              <p className="text-sm">Use a sidebar para adicionar elementos</p>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

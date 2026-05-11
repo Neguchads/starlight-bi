@@ -1,9 +1,11 @@
 import { DashboardCard } from "@/types";
 import Chart from "react-apexcharts";
+import { useFilteredData } from "@/hooks/useFilteredData";
 
 export function ChartContent({ card }: { card: DashboardCard }) {
   const chartType = card.config.chartType || "line";
   const dataKeys = card.config.dataKeys || [];
+  const filteredData = useFilteredData(card.dataSourceId);
 
   if (dataKeys.length === 0) {
     return (
@@ -37,7 +39,9 @@ export function ChartContent({ card }: { card: DashboardCard }) {
   const series = [
     {
       name: dataKeys[0] || "Dados",
-      data: [30, 40, 35, 50, 49, 60, 70],
+      data: filteredData.length > 0
+        ? filteredData.map((row) => row[dataKeys[0]] || 0)
+        : [30, 40, 35, 50, 49, 60, 70],
     },
   ];
 

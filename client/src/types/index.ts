@@ -138,3 +138,16 @@ export interface Notification {
   message: string;
   duration?: number;
 }
+
+export interface GlobalFilter {
+  id: string;
+  name: string;
+  type: "text" | "select" | "date" | "daterange" | "number";
+  value: string | string[] | { start: string; end: string } | number | null;
+  options?: { label: string; value: string }[];
+  appliedToCards: string[];
+}
+
+export interface FilteredData {
+  [cardId: string]: Record<string, any>[];
+}

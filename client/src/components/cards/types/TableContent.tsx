@@ -1,7 +1,9 @@
 import { DashboardCard } from "@/types";
+import { useFilteredData } from "@/hooks/useFilteredData";
 
 export function TableContent({ card }: { card: DashboardCard }) {
-  const rows = card.config.rows || [];
+  const filteredData = useFilteredData(card.dataSourceId);
+  const rows = filteredData.length > 0 ? filteredData : (card.config.rows || []);
   const columns = card.config.tableColumns || [];
 
   if (rows.length === 0 || columns.length === 0) {

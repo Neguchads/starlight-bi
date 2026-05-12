@@ -3,5 +3,6 @@ import App from "./App";
 import "./index.css";
 import "./styles/grid.css";
 import "./styles/touch.css";
+import "./styles/design-system.css";
 
 createRoot(document.getElementById("root")!).render(<App />);

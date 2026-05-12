@@ -77,6 +77,7 @@ export interface CardConfig {
 
   // Kanban
   kanbanColumns?: KanbanColumn[];
+  columns?: any[]; // Para Kanban avançado
 
   // Divider
   dividerStyle?: "solid" | "dashed" | "dotted";

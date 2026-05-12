@@ -115,7 +115,7 @@ A barra de filtros no topo do dashboard permite filtrar dados em múltiplos grá
 3. Edite o conteúdo diretamente no card
 
 ### Importar Dados de Arquivos
-A seção "Dados" na sidebar permite importar dados de múltiplos formatos de arquivo. Clique em "Importar Arquivo" e selecione um arquivo nos formatos suportados. Os dados serão automaticamente processados e adicionados como uma nova fonte de dados. Os gráficos atualizam automaticamente com os novos dados, e filtros globais continuam sendo aplicados.
+A seção "Dados" na sidebar permite importar dados de múltiplos formatos de arquivo. Clique em "Importar Arquivo" e selecione um arquivo nos formatos suportados. Um modal de visualização prévia aparecerá, permitindo que você revise os dados antes de confirmar a importação. No modal, você pode editar valores, remover registros, renomear a fonte de dados e navegar entre páginas. Após confirmar, os dados serão adicionados como uma nova fonte de dados e os gráficos atualizarão automaticamente.
 
 **Formatos de Arquivo Suportados:**
 - **CSV** (.csv) - Valores separados por vírgula

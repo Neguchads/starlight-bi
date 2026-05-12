@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useDashboardStore } from "@/store/dashboardStore";
 import { parseFile, getSupportedFormats } from "@/lib/fileParser";
 import { Upload, X, CheckCircle, AlertCircle } from "lucide-react";
+import { DataPreviewModal } from "@/components/modals/DataPreviewModal";
 
 export function FileImporter() {
   const { addDataSource } = useDashboardStore();
@@ -15,6 +16,8 @@ export function FileImporter() {
     type: "success" | "error";
     text: string;
   } | null>(null);
+  const [previewData, setPreviewData] = useState<Record<string, any>[] | null>(null);
+  const [previewFileName, setPreviewFileName] = useState("");
 
   const handleFileSelect = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -30,14 +33,9 @@ export function FileImporter() {
         throw new Error("Nenhum dado foi extraído do arquivo");
       }
 
-      // Adiciona a fonte de dados
-      const dataSourceName = file.name.replace(/\.[^/.]+$/, "");
-      addDataSource(dataSourceName, data, "json");
-
-      setMessage({
-        type: "success",
-        text: `✓ ${file.name} importado com sucesso! ${data.length} registros carregados.`,
-      });
+      // Abre o modal de visualização prévia
+      setPreviewData(data);
+      setPreviewFileName(file.name);
 
       // Limpa o input
       event.target.value = "";
@@ -52,6 +50,23 @@ export function FileImporter() {
   };
 
   const supportedFormats = getSupportedFormats().join(", ");
+
+  const handleConfirmImport = (dataSourceName: string) => {
+    if (previewData) {
+      addDataSource(dataSourceName, previewData, "json");
+      setMessage({
+        type: "success",
+        text: `✓ ${previewFileName} importado com sucesso! ${previewData.length} registros carregados.`,
+      });
+      setPreviewData(null);
+      setPreviewFileName("");
+    }
+  };
+
+  const handleCancelPreview = () => {
+    setPreviewData(null);
+    setPreviewFileName("");
+  };
 
   return (
     <div className="space-y-3">
@@ -103,6 +118,15 @@ export function FileImporter() {
         <p className="font-medium mb-1">Formatos suportados:</p>
         <p className="break-words">{supportedFormats}</p>
       </div>
+
+      {/* Data Preview Modal */}
+      <DataPreviewModal
+        isOpen={previewData !== null}
+        fileName={previewFileName}
+        data={previewData || []}
+        onConfirm={handleConfirmImport}
+        onCancel={handleCancelPreview}
+      />
     </div>
   );
 }

@@ -67,9 +67,7 @@ export function TopBarResponsive() {
     <div className="bg-[#0f1329] border-b border-[rgba(0,217,255,0.2)] px-4 md:px-6 py-3 md:py-4 flex items-center justify-between gap-4 flex-wrap md:flex-nowrap">
       {/* Logo e Título */}
       <div className="flex items-center gap-3 min-w-0 flex-1">
-        <div className="text-2xl font-bold bg-gradient-to-r from-[#00d9ff] to-[#a100f2] bg-clip-text text-transparent flex-shrink-0">
-          ✨
-        </div>
+        <img src="/manus-storage/logo_063e4c18.png" alt="Starlight BI" className="w-8 h-8 md:w-10 md:h-10 rounded-lg flex-shrink-0" />
         {isEditingName ? (
           <div className="flex items-center gap-2 flex-1 min-w-0">
             <input

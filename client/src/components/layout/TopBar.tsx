@@ -69,9 +69,7 @@ export function TopBar() {
       {/* Left: Logo + Dashboard Name */}
       <div className="flex items-center gap-4 flex-1">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00d9ff] to-[#ff006e] flex items-center justify-center">
-            <span className="text-[#0a0e27] font-bold text-sm">⚡</span>
-          </div>
+          <img src="/manus-storage/logo_063e4c18.png" alt="Starlight BI" className="w-8 h-8 rounded-lg" />
           <span className="text-lg font-bold bg-gradient-to-r from-[#00d9ff] to-[#ff006e] bg-clip-text text-transparent">
             Starlight BI
           </span>

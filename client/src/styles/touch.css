@@ -108,3 +108,24 @@
 .animate-slide-down {
   animation: slideDown 0.3s ease-out;
 }
+
+/* Pinch-to-zoom styles */
+.pinch-zoom-container {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.pinch-zoom-active {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* Suavizar transformação de zoom */
+@media (prefers-reduced-motion: no-preference) {
+  .pinch-zoom-container {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}

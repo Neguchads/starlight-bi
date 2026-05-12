@@ -1,5 +1,6 @@
 import { DashboardCard } from "@/types";
 import { useFilteredData } from "@/hooks/useFilteredData";
+import { TableZoomWrapper } from "../TableZoomWrapper";
 
 export function TableContent({ card }: { card: DashboardCard }) {
   const filteredData = useFilteredData(card.dataSourceId);
@@ -15,8 +16,9 @@ export function TableContent({ card }: { card: DashboardCard }) {
   }
 
   return (
-    <div className="w-full overflow-x-auto">
-      <table className="w-full text-sm">
+    <TableZoomWrapper cardId={card.id}>
+      <div className="w-full overflow-x-auto">
+        <table className="w-full text-sm">
         <thead>
           <tr className="border-b border-[rgba(0,217,255,0.1)]">
             {columns.map((col) => (
@@ -43,7 +45,8 @@ export function TableContent({ card }: { card: DashboardCard }) {
             </tr>
           ))}
         </tbody>
-      </table>
-    </div>
+        </table>
+      </div>
+    </TableZoomWrapper>
   );
 }

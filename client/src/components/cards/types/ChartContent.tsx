@@ -1,6 +1,7 @@
 import { DashboardCard } from "@/types";
 import Chart from "react-apexcharts";
 import { useFilteredData } from "@/hooks/useFilteredData";
+import { ChartZoomWrapper } from "../ChartZoomWrapper";
 
 export function ChartContent({ card }: { card: DashboardCard }) {
   const chartType = card.config.chartType || "line";
@@ -46,14 +47,16 @@ export function ChartContent({ card }: { card: DashboardCard }) {
   ];
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
-      <Chart
-        options={options}
-        series={series}
-        type={chartType as any}
-        height="100%"
-        width="100%"
-      />
-    </div>
+    <ChartZoomWrapper cardId={card.id}>
+      <div className="w-full h-full flex items-center justify-center">
+        <Chart
+          options={options}
+          series={series}
+          type={chartType as any}
+          height="100%"
+          width="100%"
+        />
+      </div>
+    </ChartZoomWrapper>
   );
 }

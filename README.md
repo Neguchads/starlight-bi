@@ -45,7 +45,14 @@
 - **Arrastar cards**: Mova cards em modo edição (touch drag)
 - **Tap para selecionar**: Selecione cards para editar
 - **Tap duplo**: Ativa modo edição em cards
+- **Pinch-to-zoom**: Amplie/reduza gráficos e tabelas (0.5x a 3x)
 - **Área de toque**: Mínimo 44x44px para facilitar interação
+
+### Pinch-to-Zoom em Gráficos e Tabelas
+- **Ampliar/Reduzir**: Use dois dedos para fazer pinch (apertar/afastar)
+- **Range**: 50% a 300% para gráficos, 75% a 200% para tabelas
+- **Controles**: Botões de zoom +/- e reset disponíveis durante zoom
+- **Indicador**: Mostra o percentual atual de zoom
 
 ### Gerenciamento de Dados
 - **Store centralizado** com Zustand

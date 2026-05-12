@@ -114,11 +114,16 @@ A barra de filtros no topo do dashboard permite filtrar dados em múltiplos grá
 2. Use os botões de configuração (⚙️) ou delete (✕)
 3. Edite o conteúdo diretamente no card
 
-### Gerenciar Dados
-1. Acesse a seção "Dados" na sidebar
-2. Faça upload de CSV/Excel ou use o editor JSON
-3. Os gráficos atualizam automaticamente com os novos dados
-4. Filtros globais continuam sendo aplicados aos dados atualizados
+### Importar Dados de Arquivos
+A seção "Dados" na sidebar permite importar dados de múltiplos formatos de arquivo. Clique em "Importar Arquivo" e selecione um arquivo nos formatos suportados. Os dados serão automaticamente processados e adicionados como uma nova fonte de dados. Os gráficos atualizam automaticamente com os novos dados, e filtros globais continuam sendo aplicados.
+
+**Formatos de Arquivo Suportados:**
+- **CSV** (.csv) - Valores separados por vírgula
+- **JSON** (.json) - Dados estruturados em formato JSON
+- **Markdown** (.md) - Tabelas em formato Markdown
+- **PDF** (.pdf) - Extrai texto e estrutura de documentos
+- **Word** (.docx, .doc) - Extrai parágrafos e conteúdo
+- **PowerPoint** (.pptx, .ppt) - Extrai slides e conteúdo de apresentações
 
 ### Exportar/Importar
 - **Exportar**: Clique no botão de download na topbar

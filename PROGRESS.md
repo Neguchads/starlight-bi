@@ -38,6 +38,20 @@
 - [x] Salvar checkpoint com sistema de filtros
 - [x] Preparar para publicação
 
+## ✅ Fase 11: Suporte para Múltiplos Formatos de Arquivo (Concluído)
+- [x] Instalar dependências: papaparse, marked, pdf-parse, docx, js-yaml
+- [x] Criar utilitário fileParser.ts com suporte a:
+  - [x] CSV (papaparse)
+  - [x] JSON (JSON.parse)
+  - [x] Markdown (marked + regex para tabelas)
+  - [x] PDF (pdf-parse)
+  - [x] DOCX (docx)
+  - [x] PPTX (metadados básicos)
+- [x] Criar componente FileImporter com UI intuitiva
+- [x] Integrar FileImporter na Sidebar
+- [x] Atualizar README com documentação de formatos suportados
+- [x] Criar arquivo de tipos para papaparse
+
 ## 🎨 Design
 - **Tema**: Dark mode (Obsidian-like)
 - **Paleta**: Ciano (#00d9ff) + Magenta (#ff006e) + Roxo (#a100f2)
@@ -56,4 +70,4 @@
 - shadcn/ui (Componentes)
 
 ## 🚀 Status Geral
-**Progresso**: 100% - Aplicação completa e pronta para produção! 🎉
+**Progresso**: 100% - Aplicação completa com suporte a múltiplos formatos de arquivo! 🎉

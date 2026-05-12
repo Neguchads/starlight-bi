@@ -24,6 +24,7 @@ import {
   ChevronUp,
 } from "lucide-react";
 import { CardType } from "@/types";
+import { FileImporter } from "./FileImporter";
 
 const CARD_TYPES: { type: CardType; label: string; icon: React.ReactNode }[] = [
   { type: "flashcard", label: "Texto Rico", icon: <Type size={18} /> },
@@ -136,10 +137,8 @@ export function Sidebar() {
               </p>
             )}
 
-            {/* Upload Data */}
-            <button className="w-full px-4 py-2 rounded-lg bg-[rgba(0,217,255,0.1)] hover:bg-[rgba(0,217,255,0.2)] transition-colors text-[#00d9ff] text-sm font-medium">
-              + Upload CSV/Excel
-            </button>
+            {/* File Importer */}
+            <FileImporter />
 
             {/* JSON Editor */}
             <button className="w-full px-4 py-2 rounded-lg bg-[rgba(161,0,242,0.1)] hover:bg-[rgba(161,0,242,0.2)] transition-colors text-[#a100f2] text-sm font-medium">

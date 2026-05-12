@@ -31,6 +31,14 @@
 - **Animações fluidas** e hover effects
 - **Interface minimalista** e intuitiva
 
+### Design Responsivo
+- **Detecção automática** de mobile vs desktop
+- **Desktop**: Sidebar fixa à esquerda com navegação completa
+- **Mobile**: Drawer deslizável com botão flutuante de menu
+- **Adaptação inteligente** de componentes para telas pequenas
+- **TopBar responsiva** com ícones compactos em mobile
+- **Breakpoint**: 768px (Tailwind md)
+
 ### Gerenciamento de Dados
 - **Store centralizado** com Zustand
 - **Múltiplas fontes de dados** (JSON, CSV, Excel)

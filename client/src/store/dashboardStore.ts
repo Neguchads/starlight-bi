@@ -20,6 +20,7 @@ interface DashboardStore {
   createDashboard: (name: string) => void;
   loadDashboard: (dashboard: Dashboard) => void;
   updateDashboardName: (name: string) => void;
+  setDashboardName: (name: string) => void;
   updateDashboardTheme: (theme: "dark" | "light") => void;
 
   // Card actions
@@ -64,6 +65,9 @@ const DEFAULT_DASHBOARD: Dashboard = {
 };
 
 export const useDashboardStore = create<DashboardStore>((set, get) => ({
+  get editMode() {
+    return get().isEditMode;
+  },
   dashboard: null,
   selectedCardId: null,
   isEditMode: true,
@@ -90,6 +94,15 @@ export const useDashboardStore = create<DashboardStore>((set, get) => ({
   },
 
   updateDashboardName: (name: string) => {
+    set((state) => ({
+      dashboard: state.dashboard
+        ? { ...state.dashboard, name, updatedAt: Date.now() }
+        : null,
+    }));
+    get().saveToDisk();
+  },
+
+  setDashboardName: (name: string) => {
     set((state) => ({
       dashboard: state.dashboard
         ? { ...state.dashboard, name, updatedAt: Date.now() }

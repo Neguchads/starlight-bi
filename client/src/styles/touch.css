@@ -1,0 +1,110 @@
+/**
+ * Starlight BI - Touch Interactions CSS
+ * Otimizações para dispositivos touch
+ */
+
+/* Desabilitar tap highlight em mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Otimizar touch para elementos arrastáveis */
+.touch-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Melhorar performance de scroll em mobile */
+.overflow-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Cursor grab para elementos arrastáveis */
+.cursor-grab {
+  cursor: grab;
+}
+
+.active\:cursor-grabbing:active {
+  cursor: grabbing;
+}
+
+/* Animações suaves para transições */
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Melhorar legibilidade em dispositivos com notch */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+    padding-top: max(0px, env(safe-area-inset-top));
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+}
+
+/* Otimizar viewport para mobile */
+@media (max-width: 768px) {
+  /* Aumentar área de toque mínima para 44x44px (recomendado) */
+  button,
+  [role="button"],
+  input[type="checkbox"],
+  input[type="radio"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Melhorar espaçamento em mobile */
+  .p-4 {
+    padding: 1rem;
+  }
+
+  /* Desabilitar zoom ao focar em input */
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
+/* Suporte para Dark Mode em mobile */
+@media (prefers-color-scheme: dark) {
+  body {
+    color-scheme: dark;
+  }
+}
+
+/* Animação suave para drawer */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s ease-out;
+}

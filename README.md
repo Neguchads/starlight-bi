@@ -39,6 +39,14 @@
 - **TopBar responsiva** com ícones compactos em mobile
 - **Breakpoint**: 768px (Tailwind md)
 
+### Gestos Touch para Mobile
+- **Swipe para direita**: Abre o drawer de menu
+- **Swipe para esquerda**: Fecha o drawer de menu
+- **Arrastar cards**: Mova cards em modo edição (touch drag)
+- **Tap para selecionar**: Selecione cards para editar
+- **Tap duplo**: Ativa modo edição em cards
+- **Área de toque**: Mínimo 44x44px para facilitar interação
+
 ### Gerenciamento de Dados
 - **Store centralizado** com Zustand
 - **Múltiplas fontes de dados** (JSON, CSV, Excel)

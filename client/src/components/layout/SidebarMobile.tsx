@@ -3,7 +3,8 @@
  * Sidebar otimizado para mobile com drawer deslizável
  */
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useSwipeGesture } from "@/hooks/useSwipeGesture";
 import { useDashboardStore } from "@/store/dashboardStore";
 import {
   Plus,
@@ -44,6 +45,19 @@ const CARD_TYPES: { type: CardType; label: string; icon: React.ReactNode }[] = [
 export function SidebarMobile() {
   const { addCard, dashboard } = useDashboardStore();
   const [isOpen, setIsOpen] = useState(false);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Swipe para abrir/fechar drawer
+  useSwipeGesture(containerRef.current, {
+    onSwipeRight: () => {
+      if (!isOpen) setIsOpen(true);
+    },
+    onSwipeLeft: () => {
+      if (isOpen) setIsOpen(false);
+    },
+    threshold: 30,
+  });
   const [expandedSections, setExpandedSections] = useState<{
     addElement: boolean;
     data: boolean;
@@ -65,7 +79,7 @@ export function SidebarMobile() {
   };
 
   return (
-    <>
+    <div ref={containerRef}>
       {/* Botão de Menu */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -84,6 +98,7 @@ export function SidebarMobile() {
 
       {/* Drawer */}
       <div
+        ref={drawerRef}
         className={`fixed bottom-0 left-0 right-0 bg-[#0f1329] border-t border-[rgba(0,217,255,0.2)] rounded-t-2xl z-30 md:hidden transition-transform duration-300 max-h-[80vh] overflow-y-auto ${
           isOpen ? "translate-y-0" : "translate-y-full"
         }`}
@@ -189,6 +204,6 @@ export function SidebarMobile() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

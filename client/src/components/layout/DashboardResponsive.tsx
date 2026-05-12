@@ -6,6 +6,7 @@
 import { useDashboardStore } from "@/store/dashboardStore";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { Dashboard } from "./Dashboard";
+import { DashboardMobile } from "./DashboardMobile";
 import { SidebarMobile } from "./SidebarMobile";
 import { Sidebar } from "./Sidebar";
 import { TopBarResponsive } from "./TopBarResponsive";
@@ -46,7 +47,7 @@ export function DashboardResponsive() {
 
           {/* Dashboard */}
           <div className="flex-1 overflow-auto">
-            <Dashboard />
+            {isMobile ? <DashboardMobile /> : <Dashboard />}
           </div>
         </div>
       </div>

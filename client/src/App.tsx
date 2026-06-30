@@ -3,32 +3,21 @@
  * Futurismo Minimalista: Glassmorphism + Neon Accents
  */
 
-import { useEffect } from "react";
-import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { ThemeProvider } from "./contexts/ThemeContext";
-import { DashboardResponsive } from "@/components/layout/DashboardResponsive";
-import { useDashboardStore } from "@/store/dashboardStore";
+import { Route, Switch } from "wouter";
+import Landing from "@/pages/Landing";
+import Dashboard from "@/pages/Dashboard";
+import Docs from "@/pages/Docs";
+import NotFound from "@/pages/NotFound";
 
 function App() {
-  const { dashboard, createDashboard, loadFromDisk } = useDashboardStore();
-
-  useEffect(() => {
-    loadFromDisk();
-    if (!dashboard) {
-      createDashboard("Meu Dashboard");
-    }
-  }, []);
-
   return (
-    <ThemeProvider defaultTheme="dark">
-      <TooltipProvider>
-        <div className="w-full h-screen bg-[#0a0e27] text-[#e0e6ff] overflow-hidden">
-          <DashboardResponsive />
-        </div>
-        <Toaster />
-      </TooltipProvider>
-    </ThemeProvider>
+    <Switch>
+      <Route path="/" component={Landing} />
+      <Route path="/dashboard" component={Dashboard} />
+      <Route path="/docs" component={Docs} />
+      <Route path="/404" component={NotFound} />
+      <Route component={NotFound} />
+    </Switch>
   );
 }
 

@@ -10,6 +10,7 @@ import Docs from "@/pages/Docs";
 import NotFound from "@/pages/NotFound";
 
 function App() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path="/" component={Landing} />

@@ -1,3 +1,4 @@
+import { useAuth } from "@/_core/hooks/useAuth";
 // Home page removed - using Dashboard layout instead
 export default function Home() {
   // The userAuth hooks provides authentication state

@@ -105,7 +105,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "@types/express": "4.17.21",
     "@types/google.maps": "^3.66.5",
-    "@types/node": "^24.19.1",
+    "@types/node": "^26.6.4",
     "@types/pdfkit": "^0.17.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",

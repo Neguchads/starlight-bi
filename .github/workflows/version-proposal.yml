@@ -16,6 +16,8 @@ concurrency:
 
 jobs:
   propose:
+    # Enable this only after allowing GitHub Actions to create PRs.
+    if: vars.RELEASE_PLEASE_ENABLED == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:

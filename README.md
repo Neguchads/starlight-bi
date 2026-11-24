@@ -252,3 +252,9 @@ Para dúvidas ou sugestões, abra uma issue no repositório.
 ---
 
 **Starlight BI** — Transforme dados em insights visuais ✨
+
+## Automação de CI e distribuição — Etapa 2
+
+As verificações de navegador, as propostas de versão e os artefatos de
+integridade estão descritos em [docs/CI_AUTOMATION.md](docs/CI_AUTOMATION.md).
+A publicação de releases permanece sujeita a revisão humana.
